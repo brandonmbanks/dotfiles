@@ -6,7 +6,7 @@ alias python="python3"
 
 alias vim="nvim"
 
-alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME" 
+alias dot="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME" 
 
 mkcd() {
   mkdir -p -- "$1" && cd -P "$1"

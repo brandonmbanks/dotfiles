@@ -6,6 +6,8 @@ node_modules/
 
 .vscode/ 
 
+.dotfiles/
+
 # zsh
 .zsh_history
 .zcompdump
