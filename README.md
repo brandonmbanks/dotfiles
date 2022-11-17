@@ -1,9 +1,9 @@
 # Dotfiles
 
-Originally, I had my dotfiles broken into many repos. This repo was created following This [guide](https://www.atlassian.com/git/tutorials/dotfiles).
+Originally, I had my dotfiles broken into many repos. This repo was created following this [guide](https://www.atlassian.com/git/tutorials/dotfiles).
 By having the workspace exist outside of the repo it removes the need for symlinks or extra tooling. Setup is also easy on a new machine.
 
-## Install dotfiles on a new system, or migrate to this setup
+## Install dotfiles
 1. `echo ".dotfiles" >> .gitignore`
 Avoid any weird recursion where .dotfiles tries to track itself.
 
@@ -17,9 +17,14 @@ Set a local configuration in .dotfiles to ignore untracked files.
 4. `dot checkout`
 Checkout the actual content from your .dotfiles repository to $HOME. Git pulls the tracked files out of the compressed database in the Git directory and places them in the work tree.
 
-E.g if you added $HOME/.aliases to .dotfiles, that file will be instantiated at that path on your new computer. Ta Da!
+E.g if you added $HOME/.aliases to .dotfiles, that file will be instantiated at that path on your new computer. :boom:
 
-`dot checkout` might fail with a message like:
+`dot checkout` might fail with a message similar to:
+```
+error: The following untracked working tree files would be overwritten by checkout:
+    .gitignore
+...
+```
 Files on your computer might have identical locations and names to files in the .dotfiles repo. Git doesn’t want to overwrite your local files.
 
 Back up the files if they’re useful, delete them if they aren’t.
