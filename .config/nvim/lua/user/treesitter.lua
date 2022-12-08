@@ -1,6 +1,6 @@
 require('nvim-treesitter.configs').setup {
     -- A list of parser names, or 'all'
-    ensure_installed = { 'go', 'lua', 'rust' },
+    ensure_installed = { 'go', 'lua', 'rust', 'sql', 'hcl' },
 
     highlight = {
         -- `false` will disable the whole extension
@@ -22,4 +22,3 @@ require('nvim-treesitter.configs').setup {
         additional_vim_regex_highlighting = false,
     },
 }
-

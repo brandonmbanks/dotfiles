@@ -18,7 +18,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+    -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
     vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
     vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
     vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
@@ -71,8 +71,25 @@ lspconfig['sumneko_lua'].setup {
     }
 }
 
+-- terraform
+require 'lspconfig'.terraformls.setup {}
+--vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+--    pattern = { "*.tf", "*.tfvars" },
+--    callback = vim.lsp.buf.formatting_sync,
+--})
+
+vim.cmd([[silent! autocmd! filetypedetect BufRead,BufNewFile *.tf]])
+vim.cmd([[autocmd BufRead,BufNewFile *.hcl set filetype=hcl]])
+vim.cmd([[autocmd BufRead,BufNewFile .terraformrc,terraform.rc set filetype=hcl]])
+vim.cmd([[autocmd BufRead,BufNewFile *.tf,*.tfvars,*.tfbackend set filetype=terraform]])
+vim.cmd([[autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=json]])
+
+require 'lspconfig'.tflint.setup {}
+
 -- autoformat on save
---vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+    callback = vim.lsp.buf.formatting_sync,
+})
 
 --local servers =  { 'gopls', 'rust_analyzer', 'sumneko_lua'}
 --for _, lsp in ipairs(servers) do

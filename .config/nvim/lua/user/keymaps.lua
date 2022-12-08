@@ -41,6 +41,8 @@ map('n', '<leader>fh', builtin.help_tags)
 map('n', '<leader>gb', builtin.git_branches)
 map('n', '<leader>fs', builtin.lsp_document_symbols)
 map('n', 'gr', builtin.lsp_references)
+map('n', 'gi', builtin.lsp_implementations)
+map('n', '<space>gd', builtin.diagnostics)
 
 -- file explorer
 map('n', '<leader>e', ':NvimTreeToggle<CR>', opts)

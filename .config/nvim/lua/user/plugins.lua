@@ -43,7 +43,6 @@ return packer.startup(function(use)
     use 'wbthomason/packer.nvim' -- packer can manage itself
 
     -- themes
-    use 'folke/tokyonight.nvim'
     use 'marko-cerovac/material.nvim'
 
     -- fuzzy finder
@@ -52,12 +51,6 @@ return packer.startup(function(use)
 
     -- status bar
     use 'nvim-lualine/lualine.nvim'
-    require('lualine').setup {
-        options = {
-            icons_enabled = true,
-            theme = auto,
-        }
-    }
 
     use {
         'nvim-tree/nvim-tree.lua',
@@ -71,18 +64,19 @@ return packer.startup(function(use)
     use 'jiangmiao/auto-pairs'
     use 'ggandor/leap.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
-
-    require('indent_blankline').setup {
-        show_current_context = true,
-        show_current_context_start = true,
-        use_treesitter = true,
-    }
+    use 'norcalli/nvim-colorizer.lua'
 
     -- syntax highlighting
     use 'nvim-treesitter/nvim-treesitter'
 
     -- git
     use 'lewis6991/gitsigns.nvim'
+    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+    use { 'ruifm/gitlinker.nvim', requires = 'nvim-lua/plenary.nvim' }
+    use { 'dinhhuy258/git.nvim' }
+    use { 'akinsho/git-conflict.nvim', tag = "*", config = function()
+        require('git-conflict').setup()
+    end }
 
     -- lsp
     use 'williamboman/mason.nvim'
@@ -102,4 +96,3 @@ return packer.startup(function(use)
         require('packer').sync()
     end
 end)
-
