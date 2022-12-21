@@ -3,7 +3,7 @@ require('git').setup({
 
     keymaps = {
         -- Open blame window
-        blame = "<Leader>gb",
+        blame = "<Leader>gB",
         -- Close blame window
         quit_blame = "q",
         -- Open blame commit

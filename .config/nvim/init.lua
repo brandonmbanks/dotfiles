@@ -14,6 +14,7 @@ local modules = {
     'user.gitsigns',
     'user.git',
     'user.colorizer',
+    'user.trouble',
 }
 
 -- disable netrw. using nvim tree instead

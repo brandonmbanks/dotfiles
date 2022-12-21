@@ -1,8 +1,8 @@
 local opts = { noremap = true, silent = true }
 
-local function map(mode, shortcut, cmd, opts)
-    opts = opts or {}
-    opts.buffer = bufnr
+local function map(mode, shortcut, cmd, o)
+    o = opts or {}
+    o.buffer = bufnr
     vim.keymap.set(mode, shortcut, cmd, opts)
 end
 
@@ -11,10 +11,10 @@ map('', '<Space>', '<Nop>', opts)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-map('n', '<leader>sv', '<cmd>lua ReloadConfig()<CR>')
+map('n', '<Leader>sv', '<cmd>lua ReloadConfig()<CR>')
 
 -- replace
-map('n', '<leader>R', ':%s//gI<Left><Left><Left>')
+map('n', '<Leader>R', ':%s//gI<Left><Left><Left>')
 
 -- Modes
 --  normal_mode = 'n'
@@ -33,23 +33,23 @@ map('n', '<C-l>', '<C-w>l')
 
 -- telescope
 local builtin = require('telescope.builtin')
-map('n', '<leader>ff', builtin.find_files)
-map('n', '<leader>p', builtin.find_files)
-map('n', '<leader>fg', builtin.live_grep)
-map('n', '<leader>fb', builtin.buffers)
-map('n', '<leader>fh', builtin.help_tags)
-map('n', '<leader>gb', builtin.git_branches)
-map('n', '<leader>fs', builtin.lsp_document_symbols)
+map('n', '<Leader>ff', builtin.find_files)
+map('n', '<Leader>p', builtin.find_files)
+map('n', '<Leader>fg', builtin.live_grep)
+map('n', '<Leader>fb', builtin.buffers)
+map('n', '<Leader>fh', builtin.help_tags)
+map('n', '<Leader>gb', builtin.git_branches)
+map('n', '<Leader>fs', builtin.lsp_document_symbols)
 map('n', 'gr', builtin.lsp_references)
 map('n', 'gi', builtin.lsp_implementations)
-map('n', '<space>gd', builtin.diagnostics)
+map('n', '<Leader>fd', builtin.diagnostics)
 
 -- file explorer
-map('n', '<leader>e', ':NvimTreeToggle<CR>', opts)
+map('n', '<Leader>e', ':NvimTreeToggle<CR>', opts)
 
 -- terminal
 map('t', '<Esc>', '<C-\\><C-N>') -- exit terminal mode
-map('n', '<leader>t', ':vsplit |term<CR>i')
+map('n', '<Leader>t', ':vsplit |term<CR>i')
 
 -- resize windows with arrows
 map('n', '<A-Up>', ':resize +2<CR>', opts)
@@ -74,6 +74,14 @@ map('v', 'p', '"_dP', opts)
 -- stay in indent mode
 map('v', '>', '>gv', opts)
 map('v', '<', '<gv', opts)
+
+-- trouble
+map('n', '<Leader>xx', '<Cmd>TroubleToggle<CR>', opts)
+map('n', '<Leader>xw', '<Cmd>TroubleToggle workspace_diagnostics<CR>', opts)
+map('n', '<Leader>xd', '<Cmd>TroubleToggle document_diagnostics<CR>', opts)
+map('n', '<Leader>xl', '<Cmd>TroubleToggle loclist<CR>', opts)
+map('n', '<Leader>xq', '<Cmd>TroubleToggle quickfix<CR>', opts)
+map('n', 'gR', '<cmd>TroubleToggle lsp_references<CR>', opts)
 
 -- pass whole file to indentation tool
 -- gg=G''

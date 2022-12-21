@@ -8,7 +8,7 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -73,11 +73,6 @@ lspconfig['sumneko_lua'].setup {
 
 -- terraform
 require 'lspconfig'.terraformls.setup {}
---vim.api.nvim_create_autocmd({ "BufWritePre" }, {
---    pattern = { "*.tf", "*.tfvars" },
---    callback = vim.lsp.buf.formatting_sync,
---})
-
 vim.cmd([[silent! autocmd! filetypedetect BufRead,BufNewFile *.tf]])
 vim.cmd([[autocmd BufRead,BufNewFile *.hcl set filetype=hcl]])
 vim.cmd([[autocmd BufRead,BufNewFile .terraformrc,terraform.rc set filetype=hcl]])

@@ -4,6 +4,9 @@ if not ok then
 end
 
 nvim_tree.setup({
+    update_focused_file = {
+        enable = true,
+    },
     view = {
         side = "left",
         mappings = {
@@ -17,4 +20,3 @@ nvim_tree.setup({
         }
     }
 })
-

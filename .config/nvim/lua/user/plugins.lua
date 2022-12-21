@@ -67,7 +67,13 @@ return packer.startup(function(use)
     use 'norcalli/nvim-colorizer.lua'
 
     -- syntax highlighting
-    use 'nvim-treesitter/nvim-treesitter'
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = function()
+            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+            ts_update()
+        end,
+    }
 
     -- git
     use 'lewis6991/gitsigns.nvim'
@@ -89,6 +95,8 @@ return packer.startup(function(use)
     use 'hrsh7th/cmp-cmdline'
     use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
     use 'L3MON4D3/LuaSnip' -- Snippets plugin
+
+    use 'folke/trouble.nvim' -- lsp diagnostics
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
