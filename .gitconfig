@@ -5,12 +5,13 @@
 	default = simple
 [core]
 	excludesfile = /Users/brandon.banks/.gitignore
-	autocrlf = input
+	autocrlf = false
 [color]
 	ui = on
 [core]
     editor = nvim
     pager = delta
+	eol = crlf
 [interactive]
     diffFilter = delta --color-only
 [delta]
