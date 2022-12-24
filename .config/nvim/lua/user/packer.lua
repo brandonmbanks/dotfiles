@@ -1,19 +1,15 @@
-local fn = vim.fn
-
--- Automatically install packer
-local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-    PACKER_BOOTSTRAP = fn.system({
-        'git',
-        'clone',
-        '--depth',
-        '1',
-        'https://github.com/wbthomason/packer.nvim',
-        install_path,
-    })
-    print('Installing packer close and reopen Neovim...')
-    vim.cmd([[packadd packer.nvim]])
+local ensure_packer = function()
+    local fn = vim.fn
+    local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+    if fn.empty(fn.glob(install_path)) > 0 then
+        fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+        vim.cmd [[packadd packer.nvim]]
+        return true
+    end
+    return false
 end
+
+local packer_bootstrap = ensure_packer()
 
 -- Autocommand that reloads neovim whenever you save the packer.lua file
 vim.cmd([[
@@ -23,22 +19,7 @@ vim.cmd([[
     augroup end
 ]])
 
--- Use a protected call so we don't error out on first use
-local ok, packer = pcall(require, 'packer')
-if not ok then
-    return
-end
-
--- Have packer use a popup window
-packer.init({
-    display = {
-        open_fn = function()
-            return require('packer.util').float({ border = 'rounded' })
-        end,
-    },
-})
-
-return require('packer').startup(function(use)
+return require('packer').startup({ function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
@@ -54,13 +35,13 @@ return require('packer').startup(function(use)
 
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
-    use {
-        'nvim-tree/nvim-tree.lua',
-        requires = {
-            'nvim-tree/nvim-web-devicons', -- optional, for file icons
-        },
-        tag = 'nightly' -- optional, updated every week. (see issue #1193)
-    }
+    --use {
+    --    'nvim-tree/nvim-tree.lua',
+    --    requires = {
+    --        'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    --    },
+    --    tag = 'nightly' -- optional, updated every week. (see issue #1193)
+    --}
 
     use({ 'nvim-treesitter/nvim-treesitter', run = function()
         local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
@@ -92,4 +73,13 @@ return require('packer').startup(function(use)
     use('mbbill/undotree')
     use 'jiangmiao/auto-pairs'
     use "lukas-reineke/indent-blankline.nvim"
-end)
+    if packer_bootstrap then
+        require('packer').sync()
+    end
+end,
+    config = {
+        display = {
+            open_fn = require('packer.util').float,
+        }
+    }
+})

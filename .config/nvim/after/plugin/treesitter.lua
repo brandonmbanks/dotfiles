@@ -1,6 +1,11 @@
-require 'nvim-treesitter.configs'.setup {
-    -- A list of parser names, or "all"
-    ensure_installed = { "help", "lua", "rust", "go", "sql" },
+local ok, treesitter = pcall(require, 'nvim-treesitter.configs')
+if not ok then
+    return
+end
+
+treesitter.setup {
+    -- A list of parser names, or 'all'
+    ensure_installed = { 'help', 'lua', 'rust', 'go', 'sql', 'vim'},
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = false,

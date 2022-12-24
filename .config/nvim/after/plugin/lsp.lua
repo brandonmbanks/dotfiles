@@ -40,7 +40,7 @@ end)
 
 -- autoformat on save
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
-    callback = vim.lsp.buf.formatting_sync,
+    callback = vim.lsp.buf.format,
 })
 
 lsp.setup()
