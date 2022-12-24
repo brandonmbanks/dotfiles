@@ -1,12 +1,8 @@
-local ok, nvim_tree = pcall(require, 'nvim-tree')
-if not ok then
-    return
-end
-
-nvim_tree.setup({
-    update_focused_file = {
-        enable = true,
-    },
+require('nvim-tree').setup({
+    -- currently crashing neovim
+    --update_focused_file = {
+    --    enable = true,
+    --},
     view = {
         side = "left",
         mappings = {
@@ -20,3 +16,6 @@ nvim_tree.setup({
         }
     }
 })
+
+-- file explorer
+vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>')
