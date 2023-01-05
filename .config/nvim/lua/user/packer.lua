@@ -35,13 +35,13 @@ return require('packer').startup({ function(use)
 
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
-    --use {
-    --    'nvim-tree/nvim-tree.lua',
-    --    requires = {
-    --        'nvim-tree/nvim-web-devicons', -- optional, for file icons
-    --    },
-    --    tag = 'nightly' -- optional, updated every week. (see issue #1193)
-    --}
+    use {
+        'nvim-tree/nvim-tree.lua',
+        requires = {
+            'nvim-tree/nvim-web-devicons', -- optional, for file icons
+        },
+        tag = 'nightly' -- optional, updated every week. (see issue #1193)
+    }
 
     use({ 'nvim-treesitter/nvim-treesitter', run = function()
         local ts_update = require('nvim-treesitter.install').update({ with_sync = true })

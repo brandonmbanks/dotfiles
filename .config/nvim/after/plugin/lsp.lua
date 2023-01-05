@@ -8,6 +8,7 @@ lsp.set_preferences({
 lsp.ensure_installed({
     'sumneko_lua',
     'rust_analyzer',
+    'gopls',
 })
 
 -- Fix Undefined global 'vim'
@@ -19,6 +20,23 @@ lsp.configure('sumneko_lua', {
             }
         }
     }
+})
+
+local cmp = require('cmp')
+-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline({ '/', '?' }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+        { name = 'buffer' }
+    }
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+        { name = 'cmdline' }
+    })
 })
 
 lsp.on_attach(function(_, bufnr)
@@ -38,9 +56,11 @@ lsp.on_attach(function(_, bufnr)
     vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
 end)
 
--- autoformat on save
-vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
-    callback = vim.lsp.buf.format,
-})
-
 lsp.setup()
+
+-- autoformat on save
+vim.api.nvim_create_autocmd('BufWritePre', {
+    callback = function()
+        vim.lsp.buf.format()
+    end
+})
