@@ -4,10 +4,9 @@ if not ok then
 end
 
 nvim_tree.setup({
-    -- currently crashing neovim
-    --update_focused_file = {
-    --    enable = true,
-    --},
+    update_focused_file = {
+        enable = true,
+    },
     view = {
         side = "left",
         mappings = {

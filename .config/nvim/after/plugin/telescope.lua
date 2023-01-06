@@ -1,17 +1,17 @@
-local telescope = require 'telescope'
+local ok, telescope = pcall(require, 'telescope')
+if not ok then
+    return
+end
 
 telescope.setup {
-    pickers = {
-        find_files = {
-            find_command = { "rg", "--files", "--hidden", "-g", "!.git" },
-        }
-    }
-}
-
-require('telescope').setup {
     defaults = {
         preview = {
             treesitter = false
+        }
+    },
+    pickers = {
+        find_files = {
+            find_command = { "rg", "--files", "--hidden", "-g", "!.git" },
         }
     },
     extensions = {
@@ -24,9 +24,10 @@ require('telescope').setup {
         }
     }
 }
+
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
-require('telescope').load_extension('fzf')
+telescope.load_extension('fzf')
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<Leader>ff', builtin.find_files)
