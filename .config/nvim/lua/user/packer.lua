@@ -70,9 +70,25 @@ return require('packer').startup({ function(use)
         }
     }
 
-    use('mbbill/undotree')
+    use 'mbbill/undotree'
     use 'jiangmiao/auto-pairs'
     use "lukas-reineke/indent-blankline.nvim"
+
+
+    -- git
+    use {
+        'dinhhuy258/git.nvim',
+        config = function()
+            require('git').setup()
+        end
+    }
+    use {
+        'lewis6991/gitsigns.nvim',
+        config = function()
+            require('gitsigns').setup()
+        end
+    }
+
     if packer_bootstrap then
         require('packer').sync()
     end
