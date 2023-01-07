@@ -1,0 +1,40 @@
+# Disable the blank line at the start of the prompt
+add_newline = false
+command_timeout = 2000
+
+# Use custom format
+format = """
+$username\
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
+$directory\
+$vcsh\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$docker_context\
+$sudo\
+$line_break\
+$jobs\
+$battery\
+$time\
+$status\
+$container\
+$shell\
+$character"""
+
+[nodejs]
+disabled = true
+
+[directory]
+style = "yellow"
+
+[git_branch]
+style = "green"
+
