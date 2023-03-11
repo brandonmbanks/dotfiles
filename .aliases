@@ -5,6 +5,7 @@ alias lsa="ls -laG"
 alias python="python3"
 
 alias vim="nvim"
+alias tmux="TERM=screen-256color-bce tmux"
 
 alias dot="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME" 
 

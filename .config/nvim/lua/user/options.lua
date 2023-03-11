@@ -11,7 +11,7 @@ vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
 
 vim.opt.mouse = 'a'
---vim.opt.clipboard = 'unnamedplus' -- utilize clipboard
+vim.opt.clipboard = 'unnamedplus' -- utilize clipboard
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
