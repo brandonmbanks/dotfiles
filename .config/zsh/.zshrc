@@ -33,9 +33,9 @@ fpath=(${ASDF_DIR}/completions $fpath)
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+autoload -Uz compinit && compinit
 _comp_options+=(globdots) # With hidden files
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-autoload -Uz compinit && compinit
 bindkey '^I'   complete-word       # tab          | complete
 bindkey '^[[Z' autosuggest-accept  # shift + tab  | autosuggest
 
@@ -48,3 +48,5 @@ zsh_add_file "plugins/cursor.zsh"
 
 eval "$(starship init zsh)"
 
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
