@@ -64,3 +64,11 @@ vim.api.nvim_create_autocmd('BufWritePre', {
         vim.lsp.buf.format()
     end
 })
+
+-- <C-x><C-o> triggers language aware completion
+-- <C-y> accepts suggestion
+
+vim.api.nvim_create_autocmd('CompleteDone', {
+    pattern = '*',
+    command = 'pclose',
+})

@@ -41,3 +41,6 @@ vim.keymap.set('v', '<', '<gv')
 -- move lines around
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+
+-- trigger autocomplete suggestion with ctrl space
+vim.keymap.set('i', '<C-Space>', '<C-x><C-o>')
