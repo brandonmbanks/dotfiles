@@ -36,6 +36,7 @@ git_branch() {
 alias cb="git rev-parse --abbrev-ref HEAD"
 alias gbdl="git for-each-ref --format '%(refname:short)' refs/heads | grep -v master | xargs git branch -D"
 alias gpush='git push origin "$(git_branch)"'
+alias gpushf='git push origin "$(git_branch)" --force-with-lease'
 alias gpull='git pull origin "$(git_branch)"'
 alias gcmsg='git commit -m'
 
@@ -69,7 +70,11 @@ alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[
 
 alias apt-up="sudo apt update && sudo apt upgrade"
 
-alias gauth="gcloud auth login --force && gcloud auth application-default login"
+alias gauth="gcloud auth login --update-adc"
 alias pg-run="mage postgres & ; sleep 3 ; mage migrate seed ; fg"
-alias gtok="gcloud auth print-access-token | pbcopy"
-alias gidtok="gcloud auth print-identity-token | pbcopy"
+alias gtok="gcloud auth print-access-token |tr -d '\n' | pbcopy"
+gidtok() {
+    tok=$(gcloud auth print-identity-token | tr -d '\n')
+    echo -n $tok | pbcopy
+    export GID_TOKEN=$tok
+}

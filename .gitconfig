@@ -5,7 +5,7 @@
 	default = simple
 [core]
 	excludesfile = /Users/brandon.banks/.gitignore
-	autocrlf = false
+	autocrlf = input
 [color]
 	ui = on
 [core]
