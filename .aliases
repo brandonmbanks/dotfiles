@@ -14,31 +14,29 @@ mkcd() {
 }
 
 # git
+git_branch() {
+  git rev-parse --abbrev-ref HEAD 2> /dev/null
+}
 alias gd="git diff"
 alias gfo="git fetch origin"
 alias gco="git checkout"
+alias gf="git fetch"
 alias gcom="git checkout main"
 alias gcb="git checkout -b"
-alias glr="git pull --rebase"
-alias gpo="git push origin"
+alias gplr="git pull origin main --rebase"
 alias gss="git status -s"
 alias ga.="git add . -u"
+alias gp='git push origin "$(git_branch)"'
+alias gpf='git push origin "$(git_branch)" --force-with-lease'
+alias gpl='git pull origin "$(git_branch)"'
+alias gcmsg='git commit -m'
 # add tracked files and commit with passed message
 gcaa() {
     git add . -u
     git commit -m "$@"
 }
-
-git_branch() {
-  git rev-parse --abbrev-ref HEAD 2> /dev/null
-}
-
 alias cb="git rev-parse --abbrev-ref HEAD"
 alias gbdl="git for-each-ref --format '%(refname:short)' refs/heads | grep -v master | xargs git branch -D"
-alias gpush='git push origin "$(git_branch)"'
-alias gpushf='git push origin "$(git_branch)" --force-with-lease'
-alias gpull='git pull origin "$(git_branch)"'
-alias gcmsg='git commit -m'
 
 # php
 alias cda="composer dump-autoload"
