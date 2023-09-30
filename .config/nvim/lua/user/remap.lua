@@ -28,8 +28,8 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 -- resize windows with arrows
 vim.keymap.set('n', '<A-Up>', ':resize +2<CR>')
 vim.keymap.set('n', '<A-Down>', ':resize -2<CR>')
-vim.keymap.set('n', '<A-Left>', ':vertical resize +2<CR>')
-vim.keymap.set('n', '<A-Right>', ':vertical resize -2<CR>')
+vim.keymap.set('n', '<A-Left>', ':vertical resize -2<CR>')
+vim.keymap.set('n', '<A-Right>', ':vertical resize +2<CR>')
 
 -- dont copy when pasting over word
 vim.keymap.set('v', 'p', "P")

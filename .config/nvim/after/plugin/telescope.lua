@@ -8,6 +8,14 @@ telescope.setup {
         preview = {
             treesitter = false
         },
+        mappings = {
+            n = {
+                ['<C-d>'] = require('telescope.actions').delete_buffer
+            },
+            i = {
+                ['<C-d>'] = require('telescope.actions').delete_buffer
+            },
+        },
     },
     pickers = {
         find_files = {
