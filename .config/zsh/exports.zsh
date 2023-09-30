@@ -4,7 +4,7 @@ export VISUAL='nvim'
 export HISTFILE="$ZDOTDIR/.zsh_history" # History filepath
 export HISTSIZE=10000                   # Maximum events for internal history
 export SAVEHIST=10000                   # Maximum events in history file
-export HISTORY_IGNORE="(ls:pwd:gcaa *:gcmsg *)"
+export HISTORY_IGNORE="(ls:pwd:gcaa *:gcmsg *:c:gss)"
 
 export VIMCONFIG="$XDG_CONFIG_HOME/nvim"
 
@@ -28,5 +28,3 @@ export MANPAGER='nvim +Man!'
 
 # flutter
 export PATH="$HOME/projects/flutter/bin:$PATH"
-
-export DOCKER_HOST=unix:///Users/${USER}/.colima/docker.sock

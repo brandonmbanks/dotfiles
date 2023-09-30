@@ -23,12 +23,12 @@ alias gco="git checkout"
 alias gf="git fetch"
 alias gcom="git checkout main"
 alias gcb="git checkout -b"
-alias gplr="git pull origin main --rebase"
+alias glr="git pull origin main --rebase"
 alias gss="git status -s"
 alias ga.="git add . -u"
 alias gp='git push origin "$(git_branch)"'
 alias gpf='git push origin "$(git_branch)" --force-with-lease'
-alias gpl='git pull origin "$(git_branch)"'
+alias gl='git pull origin "$(git_branch)"'
 alias gcmsg='git commit -m'
 # add tracked files and commit with passed message
 gcaa() {
@@ -36,6 +36,7 @@ gcaa() {
     git commit -m "$@"
 }
 alias cb="git rev-parse --abbrev-ref HEAD"
+alias gch="git rev-parse HEAD"
 alias gbdl="git for-each-ref --format '%(refname:short)' refs/heads | grep -v master | xargs git branch -D"
 
 # php
