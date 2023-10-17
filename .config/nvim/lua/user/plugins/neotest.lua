@@ -1,0 +1,60 @@
+return {}
+
+--return {
+--  "nvim-neotest/neotest",
+--  event = { "BufReadPre", "BufNewFile" },
+--  dependencies = {
+--    "nvim-lua/plenary.nvim",
+--    "nvim-treesitter/nvim-treesitter",
+--    "antoinemadec/FixCursorHold.nvim",
+--    "nvim-neotest/neotest-go",
+--  },
+--  config = function()
+--    -- get neotest namespace (api call creates or returns namespace)
+--    local neotest_ns = vim.api.nvim_create_namespace("neotest")
+--    vim.diagnostic.config({
+--      virtual_text = {
+--        format = function(diagnostic)
+--          local message = diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
+--          return message
+--        end,
+--      },
+--    }, neotest_ns)
+--
+--    local neotest = require("neotest")
+--
+--    neotest.setup({
+--      adapters = {
+--        require("neotest-go")({
+--          experimental = {
+--            test_table = true,
+--          },
+--          args = {},
+--        }),
+--      },
+--    })
+--
+--    vim.cmd([[
+--      command! NeotestSummary lua require("neotest").summary.toggle()
+--      command! NeotestFile lua require("neotest").run.run(vim.fn.expand("%"))
+--      command! Neotest lua require("neotest").run.run(vim.fn.getcwd())
+--      command! NeotestNearest lua require("neotest").run.run()
+--      command! NeotestDebug lua require("neotest").run.run({ strategy = "dap" })
+--      command! NeotestAttach lua require("neotest").run.attach()
+--      command! NeotestOutput lua require("neotest").output.open()
+--    ]])
+--
+--    vim.keymap.set("n", "<space>t", vim.cmd.NeotestNearest)
+--    vim.keymap.set("n", "<leader>ts", vim.cmd.NeotestSummary)
+--
+--    -- run nearest test
+--    vim.keymap.set("n", "<leader>t", function()
+--      require("neotest").run.run()
+--    end)
+--
+--    -- run all tests in file
+--    vim.keymap.set("n", "<leader>T", function()
+--      require("neotest").run.run(vim.fn.expand("%"))
+--    end)
+--  end,
+--}
