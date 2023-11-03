@@ -7,7 +7,7 @@ alias python="python3"
 alias vim="nvim"
 alias tmux="TERM=screen-256color-bce tmux"
 
-alias dot="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME" 
+alias dot="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
 mkcd() {
   mkdir -p -- "$1" && cd -P "$1"
@@ -70,7 +70,7 @@ alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[
 
 alias apt-up="sudo apt update && sudo apt upgrade"
 
-alias gauth="gcloud auth login --update-adc"
+alias gauth="gcloud auth application-default login"
 alias pg-run="mage postgres & ; sleep 3 ; mage migrate seed ; fg"
 alias gtok="gcloud auth print-access-token |tr -d '\n' | pbcopy"
 gidtok() {
