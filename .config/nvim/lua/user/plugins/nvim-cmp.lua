@@ -31,24 +31,25 @@ return {
         ["<CR>"] = cmp.mapping.confirm({ select = false }),
         ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
         ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
-        ["<Tab>"] = cmp.mapping(function(fallback) -- tab next suggestion
-          if cmp.visible() then
-            cmp.select_next_item()
-          else
-            fallback()
-          end
-        end),
-        ["<S-Tab>"] = cmp.mapping(function(fallback) -- shift tab prev suggestion
-          if cmp.visible() then
-            cmp.select_prev_item()
-          else
-            fallback()
-          end
-        end),
+        --["<Tab>"] = cmp.mapping(function(fallback) -- tab next suggestion
+        --  if cmp.visible() then
+        --    cmp.select_next_item()
+        --  else
+        --    fallback()
+        --  end
+        --end),
+        --["<S-Tab>"] = cmp.mapping(function(fallback) -- shift tab prev suggestion
+        --  if cmp.visible() then
+        --    cmp.select_prev_item()
+        --  else
+        --    fallback()
+        --  end
+        --end),
       }),
       -- sources for autocompletion
       sources = cmp.config.sources({
-        { name = "copilot" }, -- copilot
+        -- using copilot.vim for now
+        --{ name = "copilot" }, -- copilot
         { name = "nvim_lsp" }, -- lsp
         { name = "luasnip" }, -- snippets
         { name = "buffer" }, -- text within current buffer
