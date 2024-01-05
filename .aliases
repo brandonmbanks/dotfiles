@@ -70,7 +70,7 @@ alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[
 
 alias apt-up="sudo apt update && sudo apt upgrade"
 
-alias gauth="gcloud auth application-default login"
+alias gauth="gcloud auth login --update-adc"
 alias pg-run="mage postgres & ; sleep 3 ; mage migrate seed ; fg"
 alias gtok="gcloud auth print-access-token |tr -d '\n' | pbcopy"
 gidtok() {
