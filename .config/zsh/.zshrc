@@ -19,15 +19,15 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # plugins
 [ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
-zapplug "zsh-users/zsh-autosuggestions"
-zapplug "zsh-users/zsh-syntax-highlighting"
-zapplug "hlissner/zsh-autopair"
+plug "zsh-users/zsh-autosuggestions"
+plug "zsh-users/zsh-syntax-highlighting"
+plug "hlissner/zsh-autopair"
 
 # rust
-. "$HOME/.cargo/env"
+[ -f $HOME/.cargo/env ] && . $HOME/.cargo/env
 
 # asdf
-. $HOME/.asdf/asdf.sh
+[ -f $HOME/.asdf/asdf.sh ] && . $HOME/.asdf/asdf.sh
 fpath=(${ASDF_DIR}/completions $fpath)
 
 # fzf

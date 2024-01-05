@@ -1,6 +1,6 @@
 # general
 alias c="clear"
-alias lsa="ls -laG"
+alias ll='ls -laG'
 
 alias python="python3"
 
