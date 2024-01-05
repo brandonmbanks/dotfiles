@@ -16,6 +16,7 @@ return {
         "goimports", -- goimports formatter
         "stylua", -- lua formatter
         "prettier", -- prettier formatter
+        "templ", -- templ formatter
       },
     })
 
@@ -37,6 +38,7 @@ return {
         }), -- js/ts formatter
         formatting.stylua, -- lua formatter
         formatting.goimports, -- goimports
+        formatting.templ, -- templ
       },
       -- configure format on save
       on_attach = function(current_client, bufnr)
