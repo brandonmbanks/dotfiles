@@ -4,6 +4,7 @@ return {
   dependencies = {
     "windwp/nvim-ts-autotag",
     "nvim-treesitter/nvim-treesitter-textobjects",
+    "vrischmann/tree-sitter-templ",
   },
   build = ":TSUpdate",
   config = function()
@@ -26,6 +27,7 @@ return {
         "rust",
         "sql",
         "vim",
+        "templ",
       },
       -- Automatically install missing parsers when entering buffer
       auto_install = true,
