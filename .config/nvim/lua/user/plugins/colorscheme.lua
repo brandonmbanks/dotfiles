@@ -7,6 +7,10 @@ return {
 
     require("rose-pine").setup({
       dark_variant = "moon",
+      styles = { italic = false },
+      highlight_groups = {
+        Comment = { italic = true },
+      },
     })
 
     vim.cmd("colorscheme rose-pine")
