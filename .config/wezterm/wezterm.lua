@@ -16,5 +16,13 @@ config.font = wezterm.font({
 })
 config.font_size = 14.0
 
+config.keys = {
+  {
+    key = "w",
+    mods = "CTRL|ALT",
+    action = wezterm.action.CloseCurrentPane({ confirm = true }),
+  },
+}
+
 -- and finally, return the configuration to wezterm
 return config
