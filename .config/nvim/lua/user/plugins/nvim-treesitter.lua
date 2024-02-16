@@ -32,5 +32,11 @@ return {
       -- Automatically install missing parsers when entering buffer
       auto_install = true,
     })
+
+    vim.filetype.add({
+      extension = {
+        templ = "templ",
+      },
+    })
   end,
 }
