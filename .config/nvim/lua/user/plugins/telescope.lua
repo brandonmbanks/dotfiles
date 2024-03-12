@@ -54,7 +54,9 @@ return {
     vim.keymap.set("n", "<Leader>fh", builtin.help_tags)
     vim.keymap.set("n", "<Leader>Gb", builtin.git_branches)
     vim.keymap.set("n", "<Leader>fs", builtin.lsp_document_symbols)
-    vim.keymap.set("n", "gr", builtin.lsp_references)
+    vim.keymap.set("n", "gr", function()
+      builtin.lsp_references({ show_line = false })
+    end)
     vim.keymap.set("n", "gi", builtin.lsp_implementations)
     vim.keymap.set("n", "<Leader>fd", builtin.diagnostics)
   end,
