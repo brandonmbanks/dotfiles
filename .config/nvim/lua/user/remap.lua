@@ -44,3 +44,4 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- trigger autocomplete suggestion with ctrl space
 vim.keymap.set("i", "<C-Space>", "<C-x><C-o>")
+vim.keymap.set("i", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")

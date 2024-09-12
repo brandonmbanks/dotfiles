@@ -1,91 +1,125 @@
 return {
-  'neovim/nvim-lspconfig',
+  "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
-    'hrsh7th/cmp-nvim-lsp',
-    { 'antosha417/nvim-lsp-file-operations', config = true },
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+
+    "hrsh7th/cmp-nvim-lsp",
+    -- { "antosha417/nvim-lsp-file-operations", config = true },
+    { "folke/neodev.nvim", opts = {} },
   },
   config = function()
-    local lspconfig = require("lspconfig")
+    vim.api.nvim_create_autocmd("LspAttach", {
+      callback = function(event)
+        local map = function(keys, func, desc)
+          vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+        end
 
-    local cmp_nvim_lsp = require("cmp_nvim_lsp")
+        -- Jump to the definition of the word under your cursor.
+        --  This is where a variable was first declared, or where a function is defined, etc.
+        --  To jump back, press <C-t>.
+        map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
 
-    local opts = { noremap = true, silent = true }
-    local on_attach = function(_, bufnr)
-      opts.buffer = bufnr
+        -- Find references for the word under your cursor.
+        map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 
-      opts.desc = 'Go to definition'
-      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+        -- Jump to the implementation of the word under your cursor.
+        --  Useful when your language has ways of declaring types without an actual implementation.
+        map("gi", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
 
-      --vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts) -- telescope is handling this
+        map("<Leader>d", vim.diagnostic.open_float, "Open [D]iagnostic")
 
-      opts.desc = 'Show documentation for symbol'
-      vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+        -- Jump to the type of the word under your cursor.
+        --  Useful when you're not sure what type a variable is and you want to see
+        --  the definition of its *type*, not where it was *defined*.
+        map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
 
-      opts.desc = 'Test me'
-      vim.keymap.set('n', '<leader>vws', vim.lsp.buf.workspace_symbol, opts)
+        map("K", vim.lsp.buf.hover, "Hover Documentation")
 
-      opts.desc = 'Open diagnostic'
-      vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, opts)
+        -- Fuzzy find all the symbols in your current document.
+        --  Symbols are things like variables, functions, types, etc.
+        map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
 
-      opts.desc = 'Go to next diagnostic'
-      vim.keymap.set('n', '[d', vim.diagnostic.goto_next, opts)
+        -- Fuzzy find all the symbols in your current workspace.
+        --  Similar to document symbols, except searches over your entire project.
+        map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
-      opts.desc = 'Go to previous diagnostic'
-      vim.keymap.set('n', ']d', vim.diagnostic.goto_prev, opts)
+        -- Rename the variable under your cursor.
+        --  Most Language Servers support renaming across files, etc.
+        map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 
-      opts.desc = 'Show available code actions'
-      vim.keymap.set({'n', 'v'}, '<leader>ca', vim.lsp.buf.code_action, opts)
+        -- Execute a code action, usually your cursor needs to be on top of an error
+        -- or a suggestion from your LSP for this to activate.
+        map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
-      --vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, opts) -- telescope is handling this
+        -- The following two autocommands are used to highlight references of the
+        -- word under your cursor when your cursor rests there for a little while.
+        --    See `:help CursorHold` for information about when this is executed
+        --
+        -- When you move your cursor, the highlights will be cleared (the second autocommand).
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
+        if client and client.server_capabilities.documentHighlightProvider then
+          vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+            buffer = event.buf,
+            callback = vim.lsp.buf.document_highlight,
+          })
 
-      opts.desc = 'Rename symbol'
-      vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-
-      opts.desc = 'Show signature help'
-      vim.keymap.set('i', '<C-h>', vim.lsp.buf.signature_help, opts)
-
-      opts.desc = 'Show type definition'
-      vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-    end
+          vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+            buffer = event.buf,
+            callback = vim.lsp.buf.clear_references,
+          })
+        end
+      end,
+    })
 
     -- used to enable autocompletion (assign to every lsp server config)
-    local capabilities = cmp_nvim_lsp.default_capabilities()
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+
+    local servers = {
+      gopls = {},
+      rust_analyzer = {},
+      terraformls = {},
+      lua_ls = {
+        -- cmd = {...},
+        -- filetypes = { ...},
+        -- capabilities = {},
+        settings = {
+          Lua = {
+            completion = {
+              callSnippet = "Replace",
+            },
+            -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+            -- diagnostics = { disable = { 'missing-fields' } },
+          },
+        },
+      },
+    }
+
+    local ensure_installed = vim.tbl_keys(servers or {})
+    require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+
+    require("mason").setup()
+
+    require("mason-lspconfig").setup({
+      handlers = {
+        function(server_name)
+          local server = servers[server_name] or {}
+          -- This handles overriding only values explicitly passed
+          -- by the server configuration above. Useful when disabling
+          -- certain features of an LSP (for example, turning off formatting for tsserver)
+          server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+          require("lspconfig")[server_name].setup(server)
+        end,
+      },
+    })
 
     local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
     for type, icon in pairs(signs) do
       local hl = "DiagnosticSign" .. type
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
-
-    -- if server requires no addtional config add here
-    local svrs = {'gopls', 'rust_analyzer', 'terraformls'}
-    for _, name in ipairs(svrs) do
-      lspconfig[name].setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-      })
-    end
-
-    -- configure lua server
-    lspconfig["lua_ls"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = { -- custom settings for lua
-        Lua = {
-          -- make the language server recognize "vim" global
-          diagnostics = {
-            globals = { "vim" },
-          },
-          workspace = {
-            -- make language server aware of runtime files
-            library = {
-              [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-              [vim.fn.stdpath("config") .. "/lua"] = true,
-            },
-          },
-        },
-      },
-    })
-  end
+  end,
 }

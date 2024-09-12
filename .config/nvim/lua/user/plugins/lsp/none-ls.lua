@@ -13,16 +13,19 @@ return {
 
     mason_null_ls.setup({
       ensure_installed = {
-        "goimports", -- goimports formatter
-        "stylua", -- lua formatter
-        "prettier", -- prettier formatter
-        "templ", -- templ formatter
+        "gofumpt",           -- go formatter
+        "goimports",
+        "goimports_reviser", -- go formatter for imports
+        "stylua",            -- lua formatter
+        "prettier",          -- prettier formatter
+        "templ",             -- templ formatter
       },
+      automatic_installation = true,
     })
 
     -- for conciseness
     local formatting = null_ls.builtins.formatting -- to setup formatters
-    local diagnostics = null_ls.builtins.diagnostics -- to setup linters
+    -- local diagnostics = null_ls.builtins.diagnostics -- to setup linters
 
     -- to setup format on save
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -35,10 +38,13 @@ return {
       sources = {
         formatting.prettier.with({
           extra_filetypes = { "svelte" },
-        }), -- js/ts formatter
-        formatting.stylua, -- lua formatter
-        formatting.goimports, -- goimports
-        formatting.templ, -- templ
+        }),                       -- js/ts formatter
+        formatting.stylua,        -- lua formatter
+        -- formatting.gofumpt,           -- gofumpt
+        formatting.goimports,     -- goimports
+        -- formatting.goimports_reviser, -- goimports
+        formatting.templ,         -- templ
+        formatting.terraform_fmt, -- terraform
       },
       -- configure format on save
       on_attach = function(current_client, bufnr)
@@ -48,13 +54,14 @@ return {
             group = augroup,
             buffer = bufnr,
             callback = function()
-              vim.lsp.buf.format({
-                filter = function(client)
-                  --  only use null-ls for formatting instead of lsp server
-                  return client.name == "null-ls"
-                end,
-                bufnr = bufnr,
-              })
+              vim.lsp.buf.format({ bufnr = bufnr })
+              -- vim.lsp.buf.format({
+              --   filter = function(client)
+              --     --  only use null-ls for formatting instead of lsp server
+              --     return client.name == "null-ls"
+              --   end,
+              --   bufnr = bufnr,
+              -- })
             end,
           })
         end
