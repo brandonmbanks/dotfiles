@@ -33,3 +33,5 @@ export PATH=/usr/local/go/bin:$PATH
 
 # Man pages
 export MANPAGER='nvim +Man!'
+
+export COMPOSE_BAKE=true

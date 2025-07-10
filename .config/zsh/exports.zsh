@@ -22,9 +22,12 @@ export PATH="$GOBIN:$PATH"
 export PATH=$HOME/.local/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/go/bin:$PATH
+export PATH=$HOME/.temporalio/bin/:$PATH
 
 # Man pages
 export MANPAGER='nvim +Man!'
 
-# flutter
-export PATH="$HOME/projects/flutter/bin:$PATH"
+# krew
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+export COMPOSE_BAKE=true

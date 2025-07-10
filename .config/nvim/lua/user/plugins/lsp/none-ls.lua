@@ -13,12 +13,10 @@ return {
 
     mason_null_ls.setup({
       ensure_installed = {
-        "gofumpt",           -- go formatter
+        "gofumpt", -- go formatter
         "goimports",
         "goimports_reviser", -- go formatter for imports
-        "stylua",            -- lua formatter
-        "prettier",          -- prettier formatter
-        "templ",             -- templ formatter
+        "stylua", -- lua formatter
       },
       automatic_installation = true,
     })
@@ -36,14 +34,10 @@ return {
       root_dir = null_ls_utils.root_pattern(".null-ls-root", "Makefile", ".git", "package.json"),
       -- setup formatters & linters
       sources = {
-        formatting.prettier.with({
-          extra_filetypes = { "svelte" },
-        }),                       -- js/ts formatter
-        formatting.stylua,        -- lua formatter
+        formatting.stylua, -- lua formatter
         -- formatting.gofumpt,           -- gofumpt
-        formatting.goimports,     -- goimports
+        formatting.goimports, -- goimports
         -- formatting.goimports_reviser, -- goimports
-        formatting.templ,         -- templ
         formatting.terraform_fmt, -- terraform
       },
       -- configure format on save
