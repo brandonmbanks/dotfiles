@@ -1,7 +1,11 @@
 EDITOR='nvim'
+VISUAL='nvim'
 
 # history
 HISTFILE=$HOME/.zsh_history
+HISTSIZE=10100 # Maximum events for internal history
+SAVEHIST=10000 # Maximum events in history file
+HISTORY_IGNORE="(ls:pwd:gcaa *:gcmsg *:c:gss)"
 
 function zsh_add_file() {
     [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
@@ -31,7 +35,7 @@ plug "hlissner/zsh-autopair"
 fpath=(${ASDF_DIR}/completions $fpath)
 
 # fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(fzf --zsh)
 
 autoload -Uz compinit && compinit
 _comp_options+=(globdots) # With hidden files
@@ -46,6 +50,7 @@ zsh_add_file "plugins/cursor.zsh"
 
 [ -f "$HOME/workconfig.zsh" ] && source "$HOME/workconfig.zsh"
 
+# volta
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
