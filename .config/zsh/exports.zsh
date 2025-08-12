@@ -27,7 +27,4 @@ export PATH=$HOME/.temporalio/bin/:$PATH
 # Man pages
 export MANPAGER='nvim +Man!'
 
-# krew
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-
 export COMPOSE_BAKE=true

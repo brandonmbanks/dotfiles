@@ -1,37 +1,38 @@
 # Dotfiles
 
-Originally, I had my dotfiles broken into many repos. This repo was created following this [guide](https://www.atlassian.com/git/tutorials/dotfiles).
-By having the workspace exist outside of the repo it removes the need for symlinks or extra tooling. Setup is also easy on a new machine.
+Uses GNU stow which is a symlink manager to easily setup and manage dotfiles on a system.
 
-## Install dotfiles
-1. `echo ".dotfiles" >> .gitignore`
-Avoid any weird recursion where .dotfiles tries to track itself.
-
-1. `git clone --bare git@github.com:brandonmbanks/dotfiles.git $HOME/.dotfiles`
-
-2. `alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'`
-
-3. `dot config --local status.showUntrackedFiles no`
-Set a local configuration in .dotfiles to ignore untracked files.
-
-4. `dot checkout`
-Checkout the actual content from your .dotfiles repository to $HOME. Git pulls the tracked files out of the compressed database in the Git directory and places them in the work tree.
-
-E.g if you added $HOME/.aliases to .dotfiles, that file will be instantiated at that path on your new computer. :boom:
-
-`dot checkout` might fail with a message similar to:
+Install stow with:
 ```
-error: The following untracked working tree files would be overwritten by checkout:
-    .gitignore
-...
+brew install stow
 ```
-Files on your computer might have identical locations and names to files in the .dotfiles repo. Git doesn’t want to overwrite your local files.
+
+Clone the repo in your home directory:
+```
+git clone git@github.com:brandonmbanks/dotfiles.git
+```
+
+cd into the repo and stow.
+```
+cd dotfiles
+stow .
+```
+
+Stow will error when files on your computer have identical locations and names to files in the `dotfiles` directory. Stow doesn’t want to overwrite your local files.
 
 Back up the files if they’re useful, delete them if they aren’t.
 
-Run `dot checkout` again until you don’t get any errors.
+Run `stow .` again until you don’t get any errors.
+
+You can also use `stow --adopt .` to move the conflicting file into the `dotfiles` directory. This will overwrite the file in the `dotfiles` directory.
 
 Your dotfile setup is complete!
 
-Treat your dotfile management system is like any other Git project. Just use the `dot` alias to add, commit, push and pull.
+Treat your dotfile management system is like any other Git project. Make any changes in the `dotfiles` directory.
 
+### Work config file
+Create a file in your home directory called `workconfig.zsh`. Here you will add any exports or PATH changes only needed for a work machine.
+
+```
+touch ~/workconfig.zsh
+```
