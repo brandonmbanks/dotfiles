@@ -1,8 +1,5 @@
-EDITOR='nvim'
-VISUAL='nvim'
-
 # history
-HISTFILE=$HOME/.zsh_history
+export HISTFILE=$HOME/.zsh_history
 HISTSIZE=10100 # Maximum events for internal history
 SAVEHIST=10000 # Maximum events in history file
 HISTORY_IGNORE="(ls:pwd:gcaa *:gcmsg *:c:gss)"
