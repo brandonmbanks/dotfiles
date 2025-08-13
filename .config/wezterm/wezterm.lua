@@ -2,19 +2,24 @@
 local wezterm = require("wezterm")
 
 -- This will hold the configuration.
-local config = wezterm.config_builder()
+local conf = wezterm.config_builder()
 local act = wezterm.action
 
 -- This is where you actually apply your config choices
 
 -- font
-config.font = wezterm.font({
+conf.font = wezterm.font({
   family = "CaskaydiaMono Nerd Font Mono",
   weight = "Regular",
 })
-config.font_size = 15.0
+conf.font_size = 15.0
 
-config.keys = {
+-- hides application menu bar
+conf.window_decorations = "RESIZE"
+conf.window_background_opacity = 0.90
+conf.macos_window_background_blur = 10
+
+conf.keys = {
   {
     key = "w",
     mods = "CTRL|ALT",
@@ -45,10 +50,10 @@ config.keys = {
 local scheme = wezterm.get_builtin_color_schemes()["rose-pine-moon"]
 scheme.selection_bg = "#5e5b73"
 
-config.color_scheme = "rose-pine-moon-hl"
-config.color_schemes = {
+conf.color_scheme = "rose-pine-moon-hl"
+conf.color_schemes = {
   ["rose-pine-moon-hl"] = scheme,
 }
 
 -- and finally, return the configuration to wezterm
-return config
+return conf

@@ -7,7 +7,7 @@ return {
 
     require("rose-pine").setup({
       dark_variant = "moon",
-      styles = { italic = false },
+      styles = { italic = false, transparency = true },
       highlight_groups = {
         Comment = { italic = true },
       },
