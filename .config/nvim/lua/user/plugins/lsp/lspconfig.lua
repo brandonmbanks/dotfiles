@@ -91,8 +91,6 @@ return {
             completion = {
               callSnippet = "Replace",
             },
-            -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-            -- diagnostics = { disable = { 'missing-fields' } },
           },
         },
       },
@@ -106,12 +104,12 @@ return {
     require("mason-lspconfig").setup({
       handlers = {
         function(server_name)
-          local server = servers[server_name] or {}
+          local srv = servers[server_name] or {}
           -- This handles overriding only values explicitly passed
           -- by the server configuration above. Useful when disabling
           -- certain features of an LSP (for example, turning off formatting for tsserver)
-          server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-          require("lspconfig")[server_name].setup(server)
+          srv.capabilities = vim.tbl_deep_extend("force", {}, capabilities, srv.capabilities or {})
+          require("lspconfig")[server_name].setup(srv)
         end,
       },
     })

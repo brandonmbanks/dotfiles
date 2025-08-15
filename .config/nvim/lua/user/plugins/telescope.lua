@@ -60,5 +60,6 @@ return {
     end)
     vim.keymap.set("n", "gi", builtin.lsp_implementations)
     vim.keymap.set("n", "<Leader>fd", builtin.diagnostics)
+    vim.keymap.set("n", "<Leader>fc", builtin.commands)
   end,
 }
