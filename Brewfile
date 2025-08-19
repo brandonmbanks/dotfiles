@@ -7,7 +7,9 @@ brew 'fzf'
 brew 'fd'
 brew 'ripgrep'
 brew 'stow'
+brew 'starship'
 brew 'wget'
+brew 'neovim'
 brew 'zoxide'
 brew 'zsh'
 brew 'zsh-completions'
@@ -15,10 +17,12 @@ brew 'zsh-syntax-highlighting'
 brew 'zsh-autosuggestions'
 
 # apps
-cask 'maccy'              # clipboard manager
+cask 'dbeaver-community'  # database tool
 cask 'firefox'            # best browser
 cask 'keepingyouawake'    # prevents sleep mode
-cask 'dbeaver-community'  # database tool
+cask 'maccy'              # clipboard manager
+cask 'rectangle'          # window manager
+cask 'wezterm'            # terminal
 
 # font
 cask 'font-caskaydia-mono-nerd-font'

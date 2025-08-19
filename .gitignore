@@ -3,13 +3,14 @@ node_modules/
 venv/
 node_modules/
 
-.vscode/ 
+.vscode/
 
 .dotfiles/
 
 # zsh
 .zsh_history
 .zcompdump
+.zsh_sessions
 
 # General
 .DS_Store
