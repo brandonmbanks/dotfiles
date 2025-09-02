@@ -22,6 +22,8 @@ defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock tilesize -int 32; killall Dock
 # update settings
 /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+# allow quitting finder
+defaults write com.apple.finder QuitMenuItem -bool true; killall Finder
 
 # install zap
 firefox https://github.com/zap-zsh/zap?tab=readme-ov-file#install

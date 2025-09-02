@@ -21,6 +21,7 @@ cask 'dbeaver-community'  # database tool
 cask 'firefox'            # best browser
 cask 'keepingyouawake'    # prevents sleep mode
 cask 'maccy'              # clipboard manager
+cask 'notion'             # notes
 cask 'rectangle'          # window manager
 cask 'wezterm'            # terminal
 
