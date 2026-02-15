@@ -30,10 +30,6 @@ return {
   config = function()
     local nvim_tree = require("nvim-tree")
 
-    -- disable netrw at the very start of your init.lua
-    vim.g.loaded_netrw = 1
-    vim.g.loaded_netrwPlugin = 1
-
     nvim_tree.setup({
       update_focused_file = {
         enable = true,

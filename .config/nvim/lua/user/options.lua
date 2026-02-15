@@ -4,8 +4,6 @@ vim.opt.titlestring = "%t" -- sets title to current file
 vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 8
 vim.opt.wrap = false
-vim.opt.scrollbind = false
-
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true

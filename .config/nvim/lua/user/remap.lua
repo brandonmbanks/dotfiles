@@ -6,8 +6,6 @@ vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("i", "jk", "<Esc>")
 vim.keymap.set("i", "kk", "<Esc>")
 
-vim.keymap.set("n", "<Leader>f", vim.lsp.buf.format)
-
 -- replace
 vim.keymap.set("n", "<Leader>R", ":%s//gI<Left><Left><Left>")
 
@@ -41,6 +39,9 @@ vim.keymap.set("v", "<", "<gv")
 -- move lines around
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- copilot accept
+vim.api.nvim_set_keymap("i", "<S-Tab>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 
 -- trigger autocomplete suggestion with ctrl space
 vim.keymap.set("i", "<C-Space>", "<C-x><C-o>")
