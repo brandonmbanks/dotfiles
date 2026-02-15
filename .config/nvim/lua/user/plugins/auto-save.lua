@@ -1,5 +1,5 @@
 return {
-  "pocco81/auto-save.nvim",
+  "okuuva/auto-save.nvim",
   event = "VeryLazy",
   config = true,
 }

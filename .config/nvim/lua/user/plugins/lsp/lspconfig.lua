@@ -8,7 +8,7 @@ return {
 
     "hrsh7th/cmp-nvim-lsp",
     -- { "antosha417/nvim-lsp-file-operations", config = true },
-    { "folke/neodev.nvim", opts = {} },
+    { "folke/lazydev.nvim", ft = "lua", opts = {} },
   },
   config = function()
     vim.api.nvim_create_autocmd("LspAttach", {
@@ -37,10 +37,6 @@ return {
         map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
 
         map("K", vim.lsp.buf.hover, "Hover Documentation")
-
-        -- Fuzzy find all the symbols in your current document.
-        --  Symbols are things like variables, functions, types, etc.
-        map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
 
         -- Fuzzy find all the symbols in your current workspace.
         --  Similar to document symbols, except searches over your entire project.
@@ -82,6 +78,7 @@ return {
       gopls = {},
       rust_analyzer = {},
       terraformls = {},
+      ts_ls = {},
       lua_ls = {
         -- cmd = {...},
         -- filetypes = { ...},
