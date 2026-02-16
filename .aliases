@@ -5,13 +5,6 @@ alias ll='ls -laG'
 alias python="python3"
 
 alias vim="nvim"
-alias tmux="TERM=screen-256color-bce tmux"
-
-alias dot="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-
-mkcd() {
-  mkdir -p -- "$1" && cd -P "$1"
-}
 
 # git
 git_branch() {
@@ -38,7 +31,7 @@ gcaa() {
 }
 alias cb="git rev-parse --abbrev-ref HEAD"
 alias gch="git rev-parse HEAD"
-alias gbdl="git for-each-ref --format '%(refname:short)' refs/heads | grep -v master | xargs git branch -D"
+alias gbdl="git for-each-ref --format '%(refname:short)' refs/heads | grep -v main | xargs git branch -D"
 
 # php
 alias cda="composer dump-autoload"
@@ -68,13 +61,12 @@ alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ifconfig | grep inet"
 alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 
+# linux updates
 alias apt-up="sudo apt update && sudo apt upgrade"
 
 alias gauth="gcloud auth login --update-adc"
 alias pg-run="mage postgres & ; sleep 3 ; mage migrate seed ; fg"
 alias gtok="gcloud auth print-access-token |tr -d '\n' | pbcopy"
-gidtok() {
-    tok=$(gcloud auth print-identity-token | tr -d '\n')
-    echo -n $tok | pbcopy
-    export GID_TOKEN=$tok
-}
+
+# generate lowercase uuid
+alias uuidgen='uuidgen | tr "[:upper:]" "[:lower:]"'

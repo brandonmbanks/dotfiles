@@ -2,19 +2,29 @@
 
 Uses GNU stow which is a symlink manager to easily setup and manage dotfiles on a system.
 
-Install stow with:
-```
-brew install stow
-```
+## What's Included
+
+**Configurations:** Zsh, Neovim, WezTerm, Starship prompt, Git, GitHub CLI, EditorConfig
+
+**CLI Tools:** bat, fzf, fd, ripgrep, zoxide, git-delta
+
+**macOS Apps:** WezTerm, Firefox, Rectangle, Maccy, Notion, DBeaver, KeepingYouAwake
+
+## Setup
 
 Clone the repo in your home directory:
 ```
 git clone git@github.com:brandonmbanks/dotfiles.git
+cd dotfiles
 ```
 
-cd into the repo and stow.
+Run the setup script to install Homebrew, packages, and configure macOS settings:
 ```
-cd dotfiles
+./setup.sh
+```
+
+Then use stow to symlink the dotfiles:
+```
 stow .
 ```
 
@@ -28,10 +38,10 @@ You can also use `stow --adopt .` to move the conflicting file into the `dotfile
 
 Your dotfile setup is complete!
 
-Treat your dotfile management system is like any other Git project. Make any changes in the `dotfiles` directory.
+Treat your dotfile management system like any other Git project. Make any changes in the `dotfiles` directory.
 
 ### Work config file
-Create a file in your home directory called `workconfig.zsh`. Here you will add any exports or PATH changes only needed for a work machine.
+Optionally, create a file in your home directory called `workconfig.zsh`. Here you will add any exports or PATH changes only needed for a work machine.
 
 ```
 touch ~/workconfig.zsh

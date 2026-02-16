@@ -3,9 +3,11 @@
 .DS_Store
 
 # zsh artifacts (created by stow symlinks)
-.zcompdump
-.zsh_sessions
+**/.zcompdump
+**/.zsh_sessions
 
 # auto-generated
 cagent/
 github-copilot/
+
+wezterm-icon/

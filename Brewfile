@@ -13,8 +13,6 @@ brew 'neovim'
 brew 'zoxide'
 brew 'zsh'
 brew 'zsh-completions'
-brew 'zsh-syntax-highlighting'
-brew 'zsh-autosuggestions'
 
 # apps
 cask 'dbeaver-community'  # database tool

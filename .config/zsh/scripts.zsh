@@ -1,3 +1,13 @@
+mkcd() {
+  mkdir -p -- "$1" && cd -P "$1"
+}
+
+gidtok() {
+    tok=$(gcloud auth print-identity-token | tr -d '\n')
+    echo -n $tok | pbcopy
+    export GID_TOKEN=$tok
+}
+
 ssh_create() {
     if [ ! -z "$1" ]; then
         ssh-keygen -f $HOME/.ssh/$1 -t ed25519 -N '' -C "$1"
@@ -6,7 +16,7 @@ ssh_create() {
 }
 
 ports() {
-    sudo netstat -tulpn | grep LISTEN | fzf;
+    sudo lsof -iTCP -sTCP:LISTEN -n -P | fzf;
 }
 
 zshcomp() {
