@@ -6,7 +6,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
 
-    "hrsh7th/cmp-nvim-lsp",
+    "saghen/blink.cmp",
     -- { "antosha417/nvim-lsp-file-operations", config = true },
     { "folke/lazydev.nvim", ft = "lua", opts = {} },
   },
@@ -70,9 +70,7 @@ return {
       end,
     })
 
-    -- used to enable autocompletion (assign to every lsp server config)
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+    local capabilities = require("blink.cmp").get_lsp_capabilities()
 
     local servers = {
       gopls = {},
@@ -80,13 +78,13 @@ return {
       terraformls = {},
       ts_ls = {},
       lua_ls = {
-        -- cmd = {...},
-        -- filetypes = { ...},
-        -- capabilities = {},
         settings = {
           Lua = {
             completion = {
               callSnippet = "Replace",
+            },
+            diagnostics = {
+              globals = { "vim" },
             },
           },
         },

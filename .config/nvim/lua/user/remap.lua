@@ -1,5 +1,3 @@
-vim.g.mapleader = " "
-
 -- Insert --
 -- quick exit to normal mode
 vim.keymap.set("i", "jj", "<Esc>")
@@ -40,9 +38,3 @@ vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
--- copilot accept
-vim.api.nvim_set_keymap("i", "<S-Tab>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
-
--- trigger autocomplete suggestion with ctrl space
-vim.keymap.set("i", "<C-Space>", "<C-x><C-o>")
-vim.keymap.set("i", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
