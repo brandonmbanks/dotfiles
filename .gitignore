@@ -9,5 +9,7 @@
 # auto-generated
 cagent/
 github-copilot/
+uv/
+ngrok/
 
 wezterm-icon/
