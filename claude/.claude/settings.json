@@ -1,0 +1,50 @@
+{
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
+  },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Consulting the Palantír",
+      "Venturing into Moria",
+      "Seeking counsel of Gandalf",
+      "Crossing the Misty Mountains",
+      "Reading the Scrolls of Isildur",
+      "Summoning the Eagles",
+      "Delving too greedily",
+      "Conversing with Treebeard",
+      "Wandering in Fangorn",
+      "Lighting the beacons",
+      "Forging in the fires of Mordor",
+      "Consulting the White Council",
+      "Following the Fellowship",
+      "Creeping through the Marshes",
+      "Asking Gollum nicely",
+      "A wizard is never late",
+      "All we have to decide is what to do with the time given us",
+      "Even the very wise cannot see all ends",
+      "Not all those who wander are lost",
+      "Hoom hom, hoom hom!",
+      "Fool of a Took!",
+      "Fly, you fools!",
+      "The beacons are lit!",
+      "A day may come when courage fails",
+      "Treebeard is thinking",
+      "The Rohirrim ride forth",
+      "Po-ta-toes!",
+      "There and back again",
+      "Concerning Hobbits",
+      "What about second breakfast?",
+      "I wish I could be brave",
+      "Lembas bread fortifies the spirit",
+      "Even the smallest person can change the course",
+      "There is some good in this world, worth fighting for",
+      "Uruk-hai advancing",
+      "Share one lifetime with you",
+      "Elevensies time",
+      "There is more to this than meets the eye"
+    ]
+  },
+  "model": "haiku"
+}
