@@ -19,6 +19,8 @@ conf.window_decorations = "RESIZE"
 conf.window_background_opacity = 0.90
 conf.macos_window_background_blur = 10
 
+conf.enable_kitty_keyboard = true
+
 conf.keys = {
   {
     key = "w",
