@@ -13,3 +13,6 @@ uv/
 ngrok/
 
 wezterm-icon/
+
+# credentials
+.config/stripe/
