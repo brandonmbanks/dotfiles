@@ -4,7 +4,7 @@ Uses GNU stow which is a symlink manager to easily setup and manage dotfiles on 
 
 ## What's Included
 
-**Configurations:** Zsh, Neovim, WezTerm, Starship prompt, Git, GitHub CLI, EditorConfig
+**Configurations:** Zsh, Neovim, WezTerm, Starship prompt, Git, GitHub CLI, Claude Code, EditorConfig
 
 **CLI Tools:** bat, fzf, fd, ripgrep, zoxide, git-delta
 
