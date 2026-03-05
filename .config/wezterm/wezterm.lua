@@ -57,5 +57,7 @@ conf.color_schemes = {
   ["rose-pine-moon-hl"] = scheme,
 }
 
+conf.enable_kitty_keyboard = true
+
 -- and finally, return the configuration to wezterm
 return conf
