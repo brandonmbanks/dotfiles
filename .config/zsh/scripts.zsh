@@ -32,3 +32,16 @@ back() {
     done
 }
 
+install_nvim() {
+    local nvim_dir="$HOME/projects/neovim"
+    if [ ! -d "$nvim_dir" ]; then
+        echo "Error: $nvim_dir not found"
+        return 1
+    fi
+    cd "$nvim_dir" \
+        && make distclean \
+        && make CMAKE_BUILD_TYPE=Release \
+        && sudo make install \
+        && echo "Neovim installed successfully: $(nvim --version | head -1)"
+}
+
