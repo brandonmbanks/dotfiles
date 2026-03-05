@@ -24,10 +24,6 @@ plug "hlissner/zsh-autopair"
 # rust
 [ -f $HOME/.cargo/env ] && . $HOME/.cargo/env
 
-# asdf
-[ -f $HOME/.asdf/asdf.sh ] && . $HOME/.asdf/asdf.sh
-fpath=(${ASDF_DIR}/completions $fpath)
-
 # fzf
 source <(fzf --zsh)
 

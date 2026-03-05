@@ -27,5 +27,5 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/go/bin:$PATH
 export PATH=$HOME/.temporalio/bin/:$PATH
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export PATH="$(brew --prefix libpq)/bin:$PATH"
 export PATH="$VOLTA_HOME/bin:$PATH"

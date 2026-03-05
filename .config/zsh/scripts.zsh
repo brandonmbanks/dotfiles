@@ -11,7 +11,8 @@ gidtok() {
 ssh_create() {
     if [ ! -z "$1" ]; then
         ssh-keygen -f $HOME/.ssh/$1 -t ed25519 -N '' -C "$1"
-        chmod 700 $HOME/.ssh/$1*
+        chmod 600 $HOME/.ssh/$1
+        chmod 644 $HOME/.ssh/$1.pub
     fi
 }
 

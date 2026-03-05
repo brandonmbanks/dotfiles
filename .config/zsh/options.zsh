@@ -10,7 +10,6 @@ setopt EXTENDED_GLOB        # Treat the ‘#’, ‘~’ and ‘^’ characters 
 # history
 # setopt SHARE_HISTORY            # share history across sessions
 setopt EXTENDED_HISTORY         # include timestamp
-setopt HIST_IGNORE_DUPS         # Do not record an event that was just recorded again.
 setopt HIST_IGNORE_ALL_DUPS     # Delete an old recorded event if a new event is a duplicate.
 setopt HIST_SAVE_NO_DUPS        # Do not write a duplicate event to the history file.
 setopt HIST_FIND_NO_DUPS        # Do not display a previously found event.
