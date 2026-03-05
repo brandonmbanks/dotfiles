@@ -1,0 +1,5 @@
+^\.git$
+^README\.md$
+^setup\.sh$
+^Brewfile$
+^\.stow-local-ignore$
