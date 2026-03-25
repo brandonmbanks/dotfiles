@@ -33,6 +33,15 @@ back() {
     done
 }
 
+cpdev() {
+    local dest="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/banks/Dev/"
+    if [ -z "$1" ]; then
+        echo "Usage: cpdev <file>"
+        return 1
+    fi
+    cp "$1" "$dest"
+}
+
 install_nvim() {
     local nvim_dir="$HOME/projects/neovim"
     if [ ! -d "$nvim_dir" ]; then
