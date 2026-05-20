@@ -71,4 +71,4 @@ alias gtok="gcloud auth print-access-token |tr -d '\n' | pbcopy"
 # generate lowercase uuid
 alias uuidgen='uuidgen | tr "[:upper:]" "[:lower:]"'
 
-claude='claude --allow-dangerously-skip-permissions'
+alias claude='claude --allow-dangerously-skip-permissions'
