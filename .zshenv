@@ -16,9 +16,6 @@ export VIMCONFIG="$XDG_CONFIG_HOME/nvim"
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 
-# volta
-export VOLTA_HOME="$HOME/.volta"
-
 export COMPOSE_BAKE=true
 
 # path
@@ -28,4 +25,3 @@ export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/go/bin:$PATH
 export PATH=$HOME/.temporalio/bin/:$PATH
 export PATH="$(brew --prefix libpq)/bin:$PATH"
-export PATH="$VOLTA_HOME/bin:$PATH"

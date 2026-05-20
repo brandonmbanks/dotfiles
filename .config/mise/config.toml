@@ -1,0 +1,4 @@
+[tools]
+aube = "latest"
+node = "lts"
+pnpm = "latest"
