@@ -18,7 +18,6 @@ zsh_add_file "scripts.zsh"
 # plugins
 [ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
 plug "zsh-users/zsh-autosuggestions"
-plug "zsh-users/zsh-syntax-highlighting"
 plug "hlissner/zsh-autopair"
 
 # rust
@@ -48,3 +47,7 @@ zsh_add_file "plugins/cursor.zsh"
 eval "$(starship init zsh)"
 
 eval "$(zoxide init --cmd cd zsh)"
+
+# must be sourced last so it can wrap all ZLE (Zsh Line Editor) widgets
+plug "zsh-users/zsh-syntax-highlighting"
+eval "$(/Users/banks/.local/bin/mise activate zsh)"
