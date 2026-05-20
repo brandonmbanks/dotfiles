@@ -11,8 +11,12 @@ cagent/
 github-copilot/
 uv/
 ngrok/
+.config/iterm2/
 
 wezterm-icon/
+
+# local-only
+.claude/settings.local.json
 
 # credentials
 .config/stripe/
