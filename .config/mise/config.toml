@@ -1,4 +1,5 @@
 [tools]
 aube = "latest"
+go = "latest"
 node = "lts"
 pnpm = "latest"
