@@ -50,6 +50,13 @@ else
     echo "volta already installed"
 fi
 
+# install mise (manages go, node, etc.)
+if ! which -s mise; then
+    curl https://mise.run | sh
+else
+    echo "mise already installed"
+fi
+
 # install zap (--keep preserves existing .zshrc)
 # https://github.com/zap-zsh/zap?tab=readme-ov-file#install
 if [ ! -d "$HOME/.local/share/zap" ]; then
