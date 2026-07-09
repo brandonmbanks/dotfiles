@@ -5,3 +5,4 @@
 ^\.gitignore$
 ^\.stow-local-ignore$
 ^\.claude/settings\.local\.json$
+^\.config/mise/config\.toml$

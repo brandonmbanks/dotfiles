@@ -18,5 +18,8 @@ wezterm-icon/
 # local-only
 .claude/settings.local.json
 
+# machine-local mise tool versions (differ per machine)
+.config/mise/config.toml
+
 # credentials
 .config/stripe/
