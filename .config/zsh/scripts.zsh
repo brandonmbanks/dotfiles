@@ -2,6 +2,14 @@ mkcd() {
   mkdir -p -- "$1" && cd -P "$1"
 }
 
+gauth() {
+    if gcloud auth print-access-token &>/dev/null; then
+        echo "gcloud authorized"
+    else
+        gcloud auth login --update-adc
+    fi
+}
+
 gidtok() {
     tok=$(gcloud auth print-identity-token | tr -d '\n')
     echo -n $tok | pbcopy

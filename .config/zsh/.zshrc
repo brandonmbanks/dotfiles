@@ -50,4 +50,4 @@ eval "$(zoxide init --cmd cd zsh)"
 
 # must be sourced last so it can wrap all ZLE (Zsh Line Editor) widgets
 plug "zsh-users/zsh-syntax-highlighting"
-eval "$(/Users/banks/.local/bin/mise activate zsh)"
+eval "$("$HOME/.local/bin/mise" activate zsh)"
