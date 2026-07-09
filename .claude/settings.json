@@ -1,8 +1,91 @@
 {
-  "model": "opus",
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "osascript -e 'display notification \"Claude Code needs your attention\" with title \"Claude Code\"'"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "INPUT=$(cat); REPO=$(echo \"$INPUT\" | jq -r '.cwd // \".\"'); git -C \"$REPO\" remote get-url origin 2>/dev/null | grep -qi openly-engineering || exit 0; CMD=$(echo \"$INPUT\" | jq -r '.tool_input.command'); BRANCH=$(echo \"$CMD\" | grep -oE '(git checkout -b|git switch -c|git branch) +[^ ]+' | awk '{print $NF}'); if [ -z \"$BRANCH\" ]; then exit 0; fi; case \"$BRANCH\" in -*) exit 0 ;; esac; if echo \"$BRANCH\" | grep -q '^bbanks/'; then exit 0; fi; echo \"{\\\"decision\\\":\\\"block\\\",\\\"reason\\\":\\\"Branch name \\\\\\\"$BRANCH\\\\\\\" is missing the bbanks/ prefix. Use bbanks/$BRANCH instead.\\\"}\"",
+            "timeout": 5,
+            "statusMessage": "Checking branch naming convention..."
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "INPUT=$(cat); REPO=$(echo \"$INPUT\" | jq -r '.cwd // \".\"'); git -C \"$REPO\" remote get-url origin 2>/dev/null | grep -qi openly-engineering || exit 0; CMD=$(echo \"$INPUT\" | jq -r '.tool_input.command'); echo \"$CMD\" | grep -qE '(^|/)gh pr create' || exit 0; echo \"$CMD\" | grep -q '\\-\\-draft' && exit 0; echo '{\"decision\":\"block\",\"reason\":\"PRs must be created as drafts (--draft). Add --draft unless explicitly told to open for review.\"}'",
+            "timeout": 5,
+            "statusMessage": "Checking PR draft mode..."
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "INPUT=$(cat); REPO=$(echo \"$INPUT\" | jq -r '.cwd // \".\"'); git -C \"$REPO\" remote get-url origin 2>/dev/null | grep -qi openly-engineering || exit 0; CMD=$(echo \"$INPUT\" | jq -r '.tool_input.command'); echo \"$CMD\" | grep -qE '(^|/)gh api' || exit 0; echo \"$CMD\" | grep -qE '(pulls/[0-9]+/(comments|reviews)|issues/[0-9]+/comments)' || exit 0; echo \"$CMD\" | grep -qE '(-f |-F |--field |--raw-field )' || exit 0; echo \"$CMD\" | grep -q 'Claude AI' && exit 0; echo '{\"decision\":\"block\",\"reason\":\"GitHub comments must include AI disclaimer: *— Responded with input from Brandon via Claude AI*\"}'",
+            "timeout": 5,
+            "statusMessage": "Checking AI disclaimer..."
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "INPUT=$(cat); REPO=$(echo \"$INPUT\" | jq -r '.cwd // \".\"'); git -C \"$REPO\" remote get-url origin 2>/dev/null | grep -qi openly-engineering || exit 0; CMD=$(echo \"$INPUT\" | jq -r '.tool_input.command'); echo \"$CMD\" | grep -qE '(^|/)gh pr create' || exit 0; TITLE=$(echo \"$CMD\" | sed -n 's/.*--title \"\\([^\"]*\\)\".*/\\1/p'); if [ -z \"$TITLE\" ]; then TITLE=$(echo \"$CMD\" | sed -n \"s/.*--title '\\([^']*\\)'.*/\\1/p\"); fi; [ -z \"$TITLE\" ] && exit 0; echo \"$TITLE\" | grep -qE '^[A-Z]+-[0-9]+: ' && exit 0; echo \"$TITLE\" | grep -qE '^NO-TICKET: ' && exit 0; echo '{\"decision\":\"block\",\"reason\":\"PR title must match format TICKET-123: description or NO-TICKET: description.\"}'",
+            "timeout": 5,
+            "statusMessage": "Checking PR title format..."
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'set -a && source /etc/claude-logger.conf && set +a && python3 /usr/local/bin/claude_code_session_logger.py'",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'set -a && source /etc/claude-logger.conf && set +a && python3 /usr/local/bin/claude_code_session_logger.py'",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true
   },
   "spinnerVerbs": {
     "mode": "replace",
@@ -47,5 +130,10 @@
       "There is more to this than meets the eye"
     ]
   },
-  "skipDangerousModePermissionPrompt": true
+  "effortLevel": "high",
+  "autoDreamEnabled": true,
+  "skipDangerousModePermissionPrompt": true,
+  "editorMode": "vim",
+  "voiceEnabled": true,
+  "model": "opus[1m]"
 }

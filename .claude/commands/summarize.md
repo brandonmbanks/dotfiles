@@ -1,5 +1,5 @@
 ---
-description: Summarize this session and write it to a local file
+description: Summarize this session and write it to Obsidian Dev notes
 allowed-tools:
   - Bash
   - Read
@@ -8,8 +8,9 @@ allowed-tools:
   - Grep
 ---
 
-Write a summary of this conversation session to a file in the current working directory.
+Write a summary of this conversation session to the Obsidian Dev directory.
 
+**Output path:** `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/banks/Dev/`
 **Filename:** `YYYYMMDD <short topic>.md` — use today's date. If a file for today and this topic already exists, update it rather than creating a duplicate.
 
 ## Structure
@@ -38,5 +39,6 @@ Future me or a future Claude session picking up this work. Write for someone wit
 
 ## Before writing
 
-1. Review the full conversation to identify what's worth capturing
-2. Focus on things that would be **lost** if this conversation disappeared — decisions, context, non-obvious findings, trade-offs
+1. Read the existing files in the output directory to match the established style and naming convention
+2. Review the full conversation to identify what's worth capturing
+3. Focus on things that would be **lost** if this conversation disappeared — decisions, context, non-obvious findings, trade-offs
