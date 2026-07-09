@@ -2,4 +2,6 @@
 ^README\.md$
 ^setup\.sh$
 ^Brewfile$
+^\.gitignore$
 ^\.stow-local-ignore$
+^\.claude/settings\.local\.json$
